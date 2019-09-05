@@ -15,7 +15,7 @@
 	<script src="js/metodos.js"></script>
 </head>
 <body>
-	<header>
+	<!-- <header>
 
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 		</nav>
-	</header>
+	</header> -->
 
 	<div class="container">
 		<div class="row">	
@@ -97,7 +97,7 @@
 		</div> 
 
 
-
+		<!-- Modal registro de usuarios -->
 		<div class="modal" id="nuevoUsu" tabindex="-1" role="dialog" aria-labellebdy="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -108,48 +108,51 @@
                     <div class="modal-body">
                        <form action="insertar.php" method="POST">              		
                        		<div class="form-group">
-                       			<label for="nombre">Nombre:</label>
-                       			<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre"></input>
+                       			<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre" required></input>
                        		</div>
                        		<div class="form-group">
-                       			<label for="apellido">Apellido:</label>
-                       			<input class="form-control" id="apellido" name="apellido" type="text" placeholder="Apellido"></input>
+                       			<input class="form-control" id="apellido" name="apellido" type="text" placeholder="Apellido" required></input>
                        		</div>          
                        		<div class="form-group">
-                       			<label for="edad">Edad:</label>
-                       			<input class="form-control" id="edad" name="edad" type="text" placeholder="Edad"></input>
+							    <select name="edad" class="form-control" required>
+									<option value="">Selecciona Edad</option>
+									<option value="masculino">Mascu</option>
+									<option value="femenino">Femenino</option>
+								</select>
+							 </div>
+                       		<div class="form-group">
+							    <select name="sexo" class="form-control" required>
+									<option value="">Selecciona Sexo</option>
+									<option value="masculino">Masculino</option>
+									<option value="femenino">Femenino</option>
+								</select>
+							 </div>
+                       		<div class="form-group">
+                       			<input class="form-control" id="telefono" name="telefono" type="number" placeholder="Ingresa telefono"></input>
                        		</div>
                        		<div class="form-group">
-                       			<label for="sexo">Sexo:</label>
-                       			<input class="form-control" id="sexo" name="sexo" type="text" placeholder="Sexo"></input>
-                       		</div>
-                       		<div class="form-group">
-                       			<label for="telefono">Telefono:</label>
-                       			<input class="form-control" id="telefono" name="telefono" type="text" placeholder="Ingresa telefono"></input>
-                       		</div>
-                       		<div class="form-group">
-                       			<label for="correo">e-mail:</label>
                        			<input class="form-control" id="correo" name="correo" type="text" placeholder="Ingresa correo"></input>
                        		</div>
                        		<div class="form-group">
-                       			<label for="estado">Estado:</label>
                        			<input class="form-control" id="estado" name="estado" type="text" placeholder="Ingresa estado"></input>
                        		</div>
                        		<div class="form-group">
-                       			<label for="usuario">Usuario:</label>
                        			<input class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingresa usuario"></input>
                        		</div>
                        		<div class="form-group">
-                       			<label for="password">Telefono:</label>
                        			<input class="form-control" id="password" name="password" type="password" placeholder="Ingresa password"></input>
                        		</div>
                        		<div class="form-group">
-                       			<label for="rol">Rol:</label>
-                       			<input class="form-control" id="rol" name="rol" type="text" placeholder="Ingresa rol"></input>
-                       		</div>
+							    <select name="rol" class="form-control" required>
+									<option value="">Selecciona Rol</option>
+									<option value="1">Administrador</option>
+									<option value="2">Maestro</option>
+									<option value="3">Alumno</option>
+								</select>
+							 </div>
 
 
-							<input type="submit" class="btn btn-success" value="Salvar">
+							<input type="submit" class="btn btn-success" value="Guardar">
                        </form>
                     </div>
                     <div class="modal-footer">
@@ -159,6 +162,7 @@
             </div>
         </div> 
 
+        <!-- Modal editar de usuarios -->
         <div class="modal" id="editUsu" tabindex="-1" role="dialog" aria-labellebdy="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -226,7 +230,7 @@
 	else
 	{
 		?>
-		 <META HTTP-EQUIV="Refresh" CONTENT="0; URL=index.php">
+		 <META HTTP-EQUIV="Refresh" CONTENT="0; URL=login.php">
 		 <?php
 	}
 ?>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/estilousuarios.css">
+
 <?php 
 include "conexion.php"; 
 session_start(); 
@@ -11,6 +11,7 @@ if(isset($_SESSION['administrador'])): ?>
 	<!-- Load an icon library -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/acceso.css">
+	<link rel="stylesheet" type="text/css" href="css/estilousuarios.css">
 	<script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script>
 	<script>
 		function cargaHomeAdm() {
@@ -19,6 +20,9 @@ if(isset($_SESSION['administrador'])): ?>
 	   	function cargaUsuarios() {
 	    	$('#contenido').load('ver_usuarios.php');
 		}
+		function cargaMaterias() {
+	    	$('#contenido').load('ver_materias.php');
+		}
 	</script>
 	</head>
 	<body>
@@ -26,7 +30,7 @@ if(isset($_SESSION['administrador'])): ?>
 	<div class="sidebar">
 	  <a href="#home" onclick="cargaHomeAdm()"><i class="fa fa-fw fa-home"></i> Home</a>
 	  <a href="#" onclick="cargaUsuarios()"><i class="fa fa-fw fa-user"></i> Usuarios</a>
-	  <a href="#"><i class="fa fa-fw fa-user"></i> Materias</a>
+	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Materias</a>
 	</div>
 
 	<div class="main" id="contenido">

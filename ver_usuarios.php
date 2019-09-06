@@ -9,40 +9,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>CRUD php Mysql + bootstrap</title>
+	<title>Usuarios</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/estiloslistar.css">	
-	<script src="js/metodos.js"></script>
+	<link rel="stylesheet" href="css/estiloslistar.css">		
 </head>
 <body>
-	<!-- <header>
-
-		<nav class="navbar navbar-default navbar-static-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
-						<span class="sr-only">Desplegar / Ocultar Menu</span>	
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a href="#" class="navbar-brand">Contactos</a>
-				</div>
-				<div class="collapse navbar-collapse" id="navegacion-fm">
-					<ul class="nav navbar-nav">
-						<li><a href="#"><span class="glyphicon glyphicon-home"></span>Home</a></li>							
-						<li><a href="cerrars.php"><span class="glyphicon glyphicon-remove"></span>Salir</a></li>						
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<?php								
-							echo "<li><a href='#'><span class='glyphicon glyphicon-user'></span> ".$_SESSION['usuario']."</a></li>";
-						?>				      
-				    </ul>			
-				</div>
-			</div>
-		</nav>
-	</header> -->
-
+	
 	<div class="container">
 		<div class="row">	
 				
@@ -84,7 +56,7 @@
 						<td>$fila[8]</td>
 						<td>$fila[9]</td>";	
 					echo"<td>";						
-				    echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-nombre='" .$fila[1] ."' data-edad='" .$fila[2] ."' data-direccion='" .$fila[3] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
+				     echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-nombre='" .$fila[1] ."' data-apellido='" .$fila[2] ."' data-correo='" .$fila[3] ."' data-telefono='" .$fila[4] ."' data-sexo='" .$fila[5] ."' data-edad='" .$fila[6] ."' data-estado='" .$fila[7] ."' data-rol='" .$fila[8] ."' data-usuario='" .$fila[9] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
 					echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
 					echo "</td>";
 					echo "</tr>";
@@ -106,7 +78,7 @@
                         <h4>Nuevo Contacto</h4>                       
                     </div>
                     <div class="modal-body">
-                       <form action="insertar.php" method="POST">              		
+                       <form action="insertar.php" method="POST" data-toggle="validator">              		
                        		<div class="form-group">
                        			<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresa nombre" required></input>
                        		</div>
@@ -114,21 +86,22 @@
                        			<input class="form-control" id="apellido" name="apellido" type="text" placeholder="Ingresa apellido" required></input>
                        		</div>          
                        		<div class="form-group">
-                       			<input class="form-control" id="edad" name="edad" type="number" placeholder="Ingresa edad" required></input>
+                       			<input class="form-control" id="edad" name="edad" onkeypress="solonumeros(event);"type="number" min="18" max="100" placeholder="Ingresa edad" required></input>
                        		</div> 
                        		<div class="form-group">
-							    <select name="sexo" class="form-control" required>
+							    <select name="sexo" id="sexo" class="form-control" required>
 									<option value="">Selecciona Sexo</option>
 									<option value="masculino">Masculino</option>
 									<option value="femenino">Femenino</option>
 								</select>
 							 </div>
                        		<div class="form-group">
-                       			<input class="form-control" id="telefono" name="telefono" type="number" placeholder="Ingresa telefono" required></input>
+                       			<input class="form-control" id="telefono" name="telefono" type="text" placeholder="Ingresa telefono" required></input>
                        		</div>
+                       		
                        		<div class="form-group">
-                       			<input class="form-control" id="correo" name="correo" type="text" placeholder="Ingresa correo"required></input>
-                       		</div>
+    							<input class="form-control" id="correo" name="correo" type="email" placeholder="Ingresa e-mail" data-error="Ohh, correo invalido" required>
+    						</div>
                        		<div class="form-group">
                        			<input class="form-control" id="estado" name="estado" type="text" placeholder="Ingresa estado" required></input>
                        		</div>
@@ -139,7 +112,7 @@
                        			<input class="form-control" id="password" name="password" type="password" placeholder="Ingresa password" required></input>
                        		</div>
                        		<div class="form-group">
-							    <select name="rol" class="form-control" required>
+							    <select name="rol" id="rol" class="form-control" required>
 									<option value="">Selecciona Rol</option>
 									<option value="1">Administrador</option>
 									<option value="2">Maestro</option>
@@ -170,18 +143,43 @@
                        		        
                        		        <input  id="id" name="id" type="hidden" ></input>   		
 		                       		<div class="form-group">
-		                       			<label for="nombre">Nombre:</label>
+		                       			<label for="nombre">Nombre(s):</label>
 		                       			<input class="form-control" id="nombre" name="nombre" type="text" ></input>
 		                       		</div>
 		                       		<div class="form-group">
+		                       			<label for="apellido">Apellidos:</label>
+		                       			<input class="form-control" id="apellido" name="apellido" type="text" ></input>
+		                       		</div>
+		                       		<div class="form-group">
+		                       			<label for="correo">Correo:</label>
+		                       			<input class="form-control" id="correo" name="correo" type="text" ></input>
+		                       		</div>
+		                       		<div class="form-group">
+		                       			<label for="telefono">Telefono:</label>
+		                       			<input class="form-control" id="telefono" name="telefono" type="text" ></input>
+		                       		</div>
+		                       		<div class="form-group">
+									    <select name="sexo" id="sexo" class="form-control" required>
+											<option value="">Selecciona Sexo</option>
+											<option value="Masculino">Masculino</option>
+											<option value="Femenino">Femenino</option>
+										</select>
+									</div>
+									<div class="form-group">
 		                       			<label for="edad">Edad:</label>
 		                       			<input class="form-control" id="edad" name="edad" type="text" ></input>
 		                       		</div>
-		                       		<div class="form-group">
-		                       			<label for="direccion">Direccion:</label>
-		                       			<input class="form-control" id="direccion" name="direccion" type="text" ></input>
+			                       		<div class="form-group">
+	                       				<input class="form-control" id="estado" name="estado" type="text"></input>
+	                       			</div>	
+	                       			<div class="form-group">
+		                       			<label for="rol">Rol:</label>
+		                       			<input class="form-control" id="rol" name="rol" type="text" ></input>
 		                       		</div>
-
+		                       		<div class="form-group">
+		                       			<label for="usuario">Usuario:</label>
+		                       			<input class="form-control" id="usuario" name="usuario" type="text" ></input>
+		                       		</div>
 									<input type="submit" class="btn btn-success">							
                        </form>
                     </div>
@@ -192,18 +190,23 @@
             </div>
         </div> 
 
-
-
 	</div>
 	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>		
+	<script src="js/bootstrap.min.js"></script>	
+	<script src="js/validaciones.js"></script>
 	<script>			 
 		  $('#editUsu').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) // Button that triggered the modal
 		  var recipient0 = button.data('id')
 		  var recipient1 = button.data('nombre')
-		  var recipient2 = button.data('edad')
-		  var recipient3 = button.data('direccion')
+		  var recipient2 = button.data('apellido')
+		  var recipient3 = button.data('correo')
+		  var recipient4 = button.data('telefono')
+		  var recipient5 = button.data('sexo')
+		  var recipient6 = button.data('edad')
+		  var recipient7 = button.data('estado')
+		  var recipient8 = button.data('rol')
+		  var recipient9 = button.data('usuario')
 		   // Extract info from data-* attributes
 		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -211,12 +214,18 @@
 		  var modal = $(this)		 
 		  modal.find('.modal-body #id').val(recipient0)
 		  modal.find('.modal-body #nombre').val(recipient1)
-		  modal.find('.modal-body #edad').val(recipient2)
-		  modal.find('.modal-body #direccion').val(recipient3)		 
-		});
+		  modal.find('.modal-body #apellido').val(recipient2)
+		  modal.find('.modal-body #correo').val(recipient3)	
+		  modal.find('.modal-body #telefono').val(recipient4)
+		  modal.find('.modal-body #sexo').val(recipient5)	
+		  modal.find('.modal-body #edad').val(recipient6)
+		  modal.find('.modal-body #estado').val(recipient7)
+		  modal.find('.modal-body #rol').val(recipient8)
+		  modal.find('.modal-body #usuario').val(recipient9)
+		})
 		
 	</script>
-	
+	<!-- <script src="js/validaciones.js"></script>	 -->
 </body>
 </html>
 

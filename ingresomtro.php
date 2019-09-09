@@ -13,11 +13,11 @@ if(isset($_SESSION['maestro'])): ?>
 	<link rel="stylesheet" type="text/css" href="css/estilousuarios.css">
 	<script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script>
 	<script>
-		function cargaHomeAdm() {
+		function cargaHomeMtro() {
 	    	$('#contenido').load('ingresomtro.php');
 	   	}
 	   	function cargaUsuarios() {
-	    	$('#contenido').load('');
+	    	$('#contenido').load('impartir_materia.php');
 		}
 		function cargaMaterias() {
 	    	$('#contenido').load('');
@@ -27,7 +27,7 @@ if(isset($_SESSION['maestro'])): ?>
 	<body>
 	<!-- The sidebar -->
 	<div class="sidebar">
-	  <a href="#home" onclick="cargaHomeAdm()"><i class="fa fa-fw fa-home"></i> Home</a>
+	  <a href="#home" onclick="cargaHomeMtro()"><i class="fa fa-fw fa-home"></i> Home</a>
 	  <a href="#" onclick="cargaUsuarios()"><i class="fa fa-fw fa-user"></i> Impartir Materias</a>
 	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Ver Clases</a>
 	</div>

@@ -5,10 +5,10 @@ include "conexion.php";
 $nombre = $_POST['usuario'];
 $password = $_POST['password'];
 
-$consulta = mysqli_query ($conn, "SELECT * FROM login WHERE usuario = '$nombre' AND password = '$password'");  
+$consulta = mysqli_query ($conn, "SELECT * FROM usuarios WHERE usuario = '$nombre' AND password = '$password'");  
 
 if(!$consulta){ 
-    echo mysqli_error($mysqli);
+    echo mysqli_error($consulta);
     exit;
 } 
 

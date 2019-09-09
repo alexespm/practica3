@@ -22,10 +22,11 @@
 			<table class='table'>
 				<tr>
 					<th>Id</th>
-					<th>Nombre de Materia</th>
-					<th>Descripcion</th>
-					<th>Crn</th>
 					<th>Clave</th>
+					<th>Nombre de Materia</th>
+					<th>Cupos</th>
+					<th>Aula</th>
+					<th>Horario</th>
 					<th>Creditos</th>
 					
 					<th><span class="glyphicon glyphicon-wrench"></span></th>
@@ -43,17 +44,14 @@
 				{					
 					echo "<tr>";
 					echo "<td>$fila[0]</td>
-						<td>$fila[1]</td>
 						<td>$fila[2]</td>
-						<td>$fila[3]</td>
+						<td>$fila[1]</td>
 						<td>$fila[4]</td>
 						<td>$fila[5]</td>
 						<td>$fila[6]</td>
-						<td>$fila[7]</td>
-						<td>$fila[8]</td>
-						<td>$fila[9]</td>";	
+						<td>$fila[3]</td>";
 					echo"<td>";						
-				     echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-nombre='" .$fila[1] ."' data-apellido='" .$fila[2] ."' data-correo='" .$fila[3] ."' data-telefono='" .$fila[4] ."' data-sexo='" .$fila[5] ."' data-edad='" .$fila[6] ."' data-estado='" .$fila[7] ."' data-rol='" .$fila[8] ."' data-usuario='" .$fila[9] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
+				     echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-clave'" .$fila[2] ."' data-nombre='" .$fila[1] ."' data-cupos='" .$fila[4] ."' data-aula='" .$fila[5] ."' data-horarios='" .$fila[6] ."' data-creditos='" .$fila[3] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
 					echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
 					echo "</td>";
 					echo "</tr>";
@@ -75,48 +73,22 @@
                         <h4>Nuevo Contacto</h4>                       
                     </div>
                     <div class="modal-body">
-                       <form action="insertar.php" method="POST" data-toggle="validator">              		
+                       <form action="insertar_materia.php" method="POST" data-toggle="validator">              		
                        		<div class="form-group">
-                       			<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresa nombre" required></input>
-                       		</div>
+                       			<input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingresa nombre de la materia" required></input>
+                       		</div>     
                        		<div class="form-group">
-                       			<input class="form-control" id="apellido" name="apellido" type="text" placeholder="Ingresa apellido" required></input>
-                       		</div>          
-                       		<div class="form-group">
-                       			<input class="form-control" id="edad" name="edad" onkeypress="solonumeros(event);"type="number" min="18" max="100" placeholder="Ingresa edad" required></input>
+                       			<input class="form-control" id="creditos" name="creditos" onkeypress="solonumeros(event);"type="number" min="2" max="12" placeholder="Ingresa creditos" required></input>
                        		</div> 
                        		<div class="form-group">
-							    <select name="sexo" id="sexo" class="form-control" required>
-									<option value="">Selecciona Sexo</option>
-									<option value="masculino">Masculino</option>
-									<option value="femenino">Femenino</option>
-								</select>
-							 </div>
+                       			<input class="form-control" id="cupos" name="cupos" onkeypress="solonumeros(event);"type="number" min="20" max="40" placeholder="Ingresa cupos" required></input>
+                       		</div> 
                        		<div class="form-group">
-                       			<input class="form-control" id="telefono" name="telefono" type="text" placeholder="Ingresa telefono" required></input>
+                       			<input class="form-control" id="aula" name="aula" type="text" placeholder="Ingresa aula" required></input>
                        		</div>
-                       		
-                       		<div class="form-group">
-    							<input type="email" class="form-control" id="correo" placeholder="Email" data-error="Ohh, correo invalido" required>
-    						</div>
-                       		<div class="form-group">
-                       			<input class="form-control" id="estado" name="estado" type="text" placeholder="Ingresa estado" required></input>
-                       		</div>
-                       		<div class="form-group">
-                       			<input class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingresa usuario" required></input>
-                       		</div>
-                       		<div class="form-group">
-                       			<input class="form-control" id="password" name="password" type="password" placeholder="Ingresa password" required></input>
-                       		</div>
-                       		<div class="form-group">
-							    <select name="rol" id="rol" class="form-control" required>
-									<option value="">Selecciona Rol</option>
-									<option value="1">Administrador</option>
-									<option value="2">Maestro</option>
-									<option value="3">Alumno</option>
-								</select>
-							 </div>
-
+                       		<div class="form-group">		
+								<input type="datetime-local" class="form-control" name="horario" id="horario" required>
+							</div>  
 							<input type="submit" class="btn btn-success" value="Guardar">
                        </form>
                     </div>
@@ -136,47 +108,30 @@
                         <h4>Editar Contacto</h4>
                     </div>
                     <div class="modal-body">                      
-                       <form action="actualiza.php" method="POST">                       		
+                       <form action="actualiza_materia.php" method="POST">                       		
                        		        
                        		        <input  id="id" name="id" type="hidden" ></input>   		
 		                       		<div class="form-group">
-		                       			<label for="nombre">Nombre(s):</label>
+		                       			<label for="nombre">Nombre de Materia:</label>
 		                       			<input class="form-control" id="nombre" name="nombre" type="text" ></input>
 		                       		</div>
 		                       		<div class="form-group">
-		                       			<label for="apellido">Apellidos:</label>
-		                       			<input class="form-control" id="apellido" name="apellido" type="text" ></input>
+		                       			<label for="creditos">Creditos:</label>
+		                       			<input class="form-control" onkeypress="solonumeros(event);" id="creditos" name="creditos" type="text" min="2" max="12"></input>
 		                       		</div>
 		                       		<div class="form-group">
-		                       			<label for="correo">Correo:</label>
-		                       			<input class="form-control" id="correo" name="correo" type="text" ></input>
+		                       			<label for="cupos">Cupos:</label>
+		                       			<input class="form-control" onkeypress="solonumeros(event);" id="cupos" name="cupos" type="text" min="20" max="40"></input>
 		                       		</div>
 		                       		<div class="form-group">
-		                       			<label for="telefono">Telefono:</label>
-		                       			<input class="form-control" id="telefono" name="telefono" type="text" ></input>
+		                       			<label for="aula">Aula:</label>
+		                       			<input class="form-control" id="aula" name="aula" type="text" ></input>
 		                       		</div>
 		                       		<div class="form-group">
-									    <select name="sexo" id="sexo" class="form-control" required>
-											<option value="">Selecciona Sexo</option>
-											<option value="Masculino">Masculino</option>
-											<option value="Femenino">Femenino</option>
-										</select>
-									</div>
-									<div class="form-group">
-		                       			<label for="edad">Edad:</label>
-		                       			<input class="form-control" id="edad" name="edad" type="text" ></input>
+		                       			<label for="horario">Horario:</label>
+		                       			<input class="form-control" id="horario" name="horario" type="datetime-local" ></input>
 		                       		</div>
-			                       		<div class="form-group">
-	                       				<input class="form-control" id="estado" name="estado" type="text"></input>
-	                       			</div>	
-	                       			<div class="form-group">
-		                       			<label for="rol">Rol:</label>
-		                       			<input class="form-control" id="rol" name="rol" type="text" ></input>
-		                       		</div>
-		                       		<div class="form-group">
-		                       			<label for="usuario">Usuario:</label>
-		                       			<input class="form-control" id="usuario" name="usuario" type="text" ></input>
-		                       		</div>
+									
 									<input type="submit" class="btn btn-success">							
                        </form>
                     </div>
@@ -196,14 +151,10 @@
 		  var button = $(event.relatedTarget) // Button that triggered the modal
 		  var recipient0 = button.data('id')
 		  var recipient1 = button.data('nombre')
-		  var recipient2 = button.data('apellido')
-		  var recipient3 = button.data('correo')
-		  var recipient4 = button.data('telefono')
-		  var recipient5 = button.data('sexo')
-		  var recipient6 = button.data('edad')
-		  var recipient7 = button.data('estado')
-		  var recipient8 = button.data('rol')
-		  var recipient9 = button.data('usuario')
+		  var recipient2 = button.data('creditos')
+		  var recipient3 = button.data('cupos')
+		  var recipient4 = button.data('aula')
+		  var recipient5 = button.data('horario')
 		   // Extract info from data-* attributes
 		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -211,14 +162,10 @@
 		  var modal = $(this)		 
 		  modal.find('.modal-body #id').val(recipient0)
 		  modal.find('.modal-body #nombre').val(recipient1)
-		  modal.find('.modal-body #apellido').val(recipient2)
-		  modal.find('.modal-body #correo').val(recipient3)	
-		  modal.find('.modal-body #telefono').val(recipient4)
-		  modal.find('.modal-body #sexo').val(recipient5)	
-		  modal.find('.modal-body #edad').val(recipient6)
-		  modal.find('.modal-body #estado').val(recipient7)
-		  modal.find('.modal-body #rol').val(recipient8)
-		  modal.find('.modal-body #usuario').val(recipient9)
+		  modal.find('.modal-body #creditos').val(recipient2)
+		  modal.find('.modal-body #cupos').val(recipient3)	
+		  modal.find('.modal-body #aula').val(recipient4)
+		  modal.find('.modal-body #horario').val(recipient5)	
 		})
 		
 	</script>

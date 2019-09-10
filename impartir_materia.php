@@ -68,28 +68,16 @@
                         <h4>Generar clase</h4>
                     </div>
                     <div class="modal-body">                      
-                       <form action="agendar_clase.php" method="POST">                       		
+                       <form action="generaclase.php" method="POST">                       		
                        		        
                        		        <input  id="id" name="id" type="hidden" ></input>   		
 		                       		<div class="form-group">
 		                       			<label for="nombre">Nombre de Materia:</label>
-		                       			<input class="form-control" id="nombre" name="nombre" type="text" ></input>
-		                       		</div>
-		                       		<div class="form-group">
-		                       			<label for="creditos">Creditos:</label>
-		                       			<input class="form-control" onkeypress="solonumeros(event);" id="creditos" name="creditos" type="number" min="2" max="12"></input>
-		                       		</div>
-		                       		<div class="form-group">
-		                       			<label for="cupos">Cupos:</label>
-		                       			<input class="form-control" onkeypress="solonumeros(event);" id="cupos" name="cupos" type="number" min="20" max="40"></input>
-		                       		</div>
-		                       		<div class="form-group">
-		                       			<label for="aula">Aula:</label>
-		                       			<input class="form-control" id="aula" name="aula" type="text" ></input>
+		                       			<input class="form-control" id="nombre" name="nombre" type="text" disabled></input>
 		                       		</div>
 		                       		<div class="form-group"> 
 		                       			<label for="horario">Dias:</label>                   
-										<select>
+										<select id="dias" name="dias">
 										    <option value="0">Seleccione una opcion:</option>
 										    <?php
 												$mysqli = new mysqli("localhost", "root", "", "practica4");	
@@ -102,7 +90,7 @@
 		                       		</div>
 		                       		<div class="form-group">
 		                       			<label for="horario">Hora:</label>
-										<select>
+										<select id="hora" name="hora">
 										    <option value="0">Seleccione una opcion:</option>
 										    <?php
 												$mysqli = new mysqli("localhost", "root", "", "practica4");	

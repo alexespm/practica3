@@ -1,6 +1,6 @@
 <?php
 include "conexion.php";
-
+session_start(); 
 $consulta = mysqli_query ($conn, "SELECT clave FROM materias"); 
 
 	$nom = $_POST['nombre'];

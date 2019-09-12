@@ -13,22 +13,22 @@ if(isset($_SESSION['alumno'])): ?>
 	<link rel="stylesheet" type="text/css" href="css/estilousuarios.css">
 	<script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script>
 	<script>
-		function cargaHomeAdm() {
-	    	$('#contenido').load('ingresoadm.php');
+		function cargaHomeAlum() {
+	    	$('#contenido').load('ingresoalum.php');
 	   	}
-	   	function cargaUsuarios() {
-	    	$('#contenido').load('ver_usuarios.php');
+	   	function cargaAgenda() {
+	    	$('#contenido').load('Agendar.php');
 		}
 		function cargaMaterias() {
-	    	$('#contenido').load('ver_materias.php');
+	    	$('#contenido').load('');
 		}
 	</script>
 	</head>
 	<body>
 	<!-- The sidebar -->
 	<div class="sidebar">
-	  <a href="#home" onclick="cargaHomeAdm()"><i class="fa fa-fw fa-home"></i> Home</a>
-	  <a href="#" onclick="cargaUsuarios()"><i class="fa fa-fw fa-user"></i> Usuarios</a>
+	  <a href="#home" onclick="cargaHomeAlum()"><i class="fa fa-fw fa-home"></i> Home</a>
+	  <a href="#" onclick="cargaAgenda()"><i class="fa fa-fw fa-user"></i> Agendar</a>
 	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Materias</a>
 	</div>
 

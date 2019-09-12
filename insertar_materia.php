@@ -28,7 +28,7 @@ else{
 			    $clave .= substr($caracteres,rand(0,strlen($caracteres)),1); 
 			}
 		}while($claveobtenida == $clave);
-		$sql = "INSERT INTO materias (nombre,clave,creditos,cupos,aula,horario) VALUES ('$nom','$clave','$credi','$cupos','$aula','$horario')";
+		$sql = "INSERT INTO materias (nombremat,clave,creditos,cupos,aula,horario) VALUES ('$nom','$clave','$credi','$cupos','$aula','$horario')";
 		if (mysqli_query($conn, $sql)) {
 ?>			
 		    <SCRIPT LANGUAGE="javascript"> 

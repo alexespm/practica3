@@ -83,7 +83,7 @@
 												$mysqli = new mysqli("localhost", "root", "", "practica4");	
 										        $query = $mysqli -> query ("SELECT DISTINCT dias FROM horario");
 										        while ($valores = mysqli_fetch_array($query)) {
-										            echo '<option value="'.$valores[id].'">'.$valores[dias].'</option>';
+										            echo '<option value="'.$valores[dias].'">'.$valores[dias].'</option>';
 										        }
 										    ?>
 										</select>
@@ -96,7 +96,7 @@
 												$mysqli = new mysqli("localhost", "root", "", "practica4");	
 										        $query = $mysqli -> query ("SELECT DISTINCT hora FROM horario");
 										        while ($valores = mysqli_fetch_array($query)) {
-										            echo '<option value="'.$valores[id].'">'.$valores[hora].'</option>';
+										            echo '<option value="'.$valores[hora].'">'.$valores[hora].'</option>';
 										        }
 										    ?>
 										</select>

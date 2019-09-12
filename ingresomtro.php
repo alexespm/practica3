@@ -20,7 +20,7 @@ if(isset($_SESSION['maestro'])): ?>
 	    	$('#contenido').load('impartir_materia.php');
 		}
 		function cargaMaterias() {
-	    	$('#contenido').load('');
+	    	$('#contenido').load('ver_clases.php');
 		}
 	</script>
 	</head>

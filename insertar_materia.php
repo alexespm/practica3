@@ -7,7 +7,6 @@ $consulta = mysqli_query ($conn, "SELECT clave FROM materias");
 	$credi = $_POST['creditos'];
 	$cupos = $_POST['cupos'];
 	$aula = $_POST['aula'];
-	$horario = $_POST['horario'];
 if(!$consulta){ 
     echo mysqli_error($consulta);
     exit;
@@ -16,7 +15,31 @@ else{
 	$caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
 	$numerodeletras=5;
 	$clave="";
-	
+
+	$sql = "SELECT * FROM materias";
+	$resulta = mysqli_query($conn,$sql);
+	$numero = mysqli_num_rows($resulta);
+	echo 'Número de total de registros: ' . $numero;
+	if($numero==0)
+	{
+		$numerodeletras=5; 
+			$clave = "";
+			for($i=0;$i<$numerodeletras;$i++)
+			{
+			    $clave .= substr($caracteres,rand(0,strlen($caracteres)),1); 
+			}
+		$sql = "INSERT INTO materias (nombremat,clave,creditos,cupos,aula) VALUES ('$nom','$clave','$credi','$cupos','$aula')";
+		if (mysqli_query($conn, $sql)) {
+?>			
+		    <SCRIPT LANGUAGE="javascript"> 
+            	alert("Materia Registrada"); 
+        	</SCRIPT> 
+        	<META HTTP-EQUIV="Refresh" CONTENT="0; URL=ingresoadm.php">	
+<?php
+		} else {
+		    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+		}
+	}
 	if($dato = mysqli_fetch_assoc($consulta)) {
 		$claveobtenida = $dato["clave"];
 		do
@@ -28,7 +51,7 @@ else{
 			    $clave .= substr($caracteres,rand(0,strlen($caracteres)),1); 
 			}
 		}while($claveobtenida == $clave);
-		$sql = "INSERT INTO materias (nombremat,clave,creditos,cupos,aula,horario) VALUES ('$nom','$clave','$credi','$cupos','$aula','$horario')";
+		$sql = "INSERT INTO materias (nombremat,clave,creditos,cupos,aula) VALUES ('$nom','$clave','$credi','$cupos','$aula')";
 		if (mysqli_query($conn, $sql)) {
 ?>			
 		    <SCRIPT LANGUAGE="javascript"> 
@@ -43,9 +66,6 @@ else{
 		mysqli_close($conn);
 				
 			}
-
-	
 }
 
-	
 ?>

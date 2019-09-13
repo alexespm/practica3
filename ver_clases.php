@@ -34,15 +34,16 @@
 			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 			    exit();
 			}
-			$consulta2 = "SELECT NRC,nombre,clave,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id WHERE id_usuario='$id_profesor'";
+			//$consulta2 = "SELECT NRC FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id W";
+			$consulta2 = "SELECT NRC,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id WHERE id_usuario='$id_profesor'";
 			if ($resultado = $mysqli->query($consulta2)) 
 			{
 				while ($fila = $resultado->fetch_row()) 
 				{					
 					echo "<tr>";
 					echo "<td>$fila[0]</td>
-						<td>$fila[2]</td>
 						<td>$fila[1]</td>
+						<td>$fila[2]</td>
 						<td>$fila[3]</td>
 						<td>$fila[4]</td>
 						<td>$fila[5]</td>";

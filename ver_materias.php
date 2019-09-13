@@ -84,9 +84,6 @@
                        		<div class="form-group">
                        			<input class="form-control" id="aula" name="aula" type="text" placeholder="Ingresa aula" required></input>
                        		</div>
-                       		<div class="form-group">		
-								<input type="datetime-local" class="form-control" name="horario" id="horario" required>
-							</div>  
 							<input type="submit" class="btn btn-success" value="Guardar">
                        </form>
                     </div>

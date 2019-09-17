@@ -7,17 +7,18 @@ $nrc = $_POST['nrc'];
 		$consulta = "INSERT INTO usuarioclase (clase_ide,usuario_ide) VALUES ('$nrc','$id_usuario')";
 		$consulta1= mysqli_query($conn, "SELECT cupos,NRC FROM materias where NRC = $nrc");
 		$consulta2 = mysqli_query($conn,"SELECT id_materia from clases where id_materia = $nrc");
-		$consulta3 = mysqli_query($conn,"SELECT clase_ide from usuarioclase WHERE clase_ide=$nrc");
+		$consulta3 = mysqli_query($conn,"SELECT clase_ide,usuario_ide from usuarioclase WHERE clase_ide=$nrc");
 		$dato = mysqli_fetch_assoc($consulta1);
 		$cupos = $dato["cupos"];
 		$dato2 = mysqli_fetch_assoc($consulta3);
 		$materiacod = $dato2["clase_ide"];
+		$usuariocod = $dato3["usuario_ide"];
 		$cupomenos = $cupos-1;
 		if(!$consulta){ 
 			echo mysqli_error($consulta);
 		    exit;
 		} 
-		if($nrc==$materiacod)
+		if($nrc==$materiacod && $id_usuario==$usuariocod)
 		{
 ?>			
 				<SCRIPT LANGUAGE="javascript"> 

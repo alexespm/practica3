@@ -50,7 +50,7 @@
 						<td>$fila[3]</td>";
 					echo"<td>";						
 				     echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-clave'" .$fila[2] ."' data-nombre='" .$fila[1] ."' data-cupos='" .$fila[4] ."' data-aula='" .$fila[5] ."' data-creditos='" .$fila[3] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
-					echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
+					echo "<a class='btn btn-danger' href='eliminamaterias.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
 					echo "</td>";
 					echo "</tr>";
 				}
@@ -94,7 +94,7 @@
             </div>
         </div> 
 
-        <!-- Modal editar de usuarios -->
+        <!-- Modal editar de materiass -->
         <div class="modal" id="editUsu" tabindex="-1" role="dialog" aria-labellebdy="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -103,7 +103,7 @@
                         <h4>Editar Contacto</h4>
                     </div>
                     <div class="modal-body">                      
-                       <form action="actualiza_materia.php" method="POST">                       		
+                       <form action="actualizamaterias.php" method="POST">                       		
                        		        
                        		        <input  id="id" name="id" type="hidden" ></input>   		
 		                       		<div class="form-group">
@@ -122,11 +122,6 @@
 		                       			<label for="aula">Aula:</label>
 		                       			<input class="form-control" id="aula" name="aula" type="text" ></input>
 		                       		</div>
-		                       		<div class="form-group">
-		                       			<label for="horario">Horario:</label>
-		                       			<input class="form-control" id="horario" name="horario" type="datetime-local" ></input>
-		                       		</div>
-									
 									<input type="submit" class="btn btn-success">							
                        </form>
                     </div>

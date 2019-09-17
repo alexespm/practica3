@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Usuarios</title>
+	<title>Administracion</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estiloslistar.css">		
 </head>
@@ -18,8 +18,8 @@
 	<div class="container">
 		<div class="row">	
 				
-			<a class="btn btn-success" data-toggle="modal" data-target="#nuevoUsu">Nuevo Contacto</a><br><br>
-			<table class='table'>
+			<a class="btn btn-success" data-toggle="modal" data-target="#nuevoUsu">Nuevo Usuario</a><br><br>
+			<table class='table table-responsive w-auto'>
 				<tr>
 					<th>Id</th>
 					<th>Nombre</th>
@@ -56,8 +56,10 @@
 						<td>$fila[8]</td>
 						<td>$fila[9]</td>";	
 					echo"<td>";						
-				     echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-nombre='" .$fila[1] ."' data-apellido='" .$fila[2] ."' data-correo='" .$fila[3] ."' data-telefono='" .$fila[4] ."' data-sexo='" .$fila[5] ."' data-edad='" .$fila[6] ."' data-estado='" .$fila[7] ."' data-rol='" .$fila[8] ."' data-usuario='" .$fila[9] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
-					echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
+						echo"<div class='row'>";
+							echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-nombre='" .$fila[1] ."' data-apellido='" .$fila[2] ."' data-correo='" .$fila[3] ."' data-telefono='" .$fila[4] ."' data-sexo='" .$fila[5] ."' data-edad='" .$fila[6] ."' data-estado='" .$fila[7] ."' data-rol='" .$fila[8] ."' data-usuario='" .$fila[9] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
+					echo "<br><br><a class='btn btn-danger' href='eliminausuarios.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
+						echo"</div>";
 					echo "</td>";
 					echo "</tr>";
 				}
@@ -139,7 +141,7 @@
                         <h4>Editar Contacto</h4>
                     </div>
                     <div class="modal-body">                      
-                       <form action="actualiza.php" method="POST">                       		
+                       <form action="actualizausuarios.php" method="POST">                       		
                        		        
                        		        <input  id="id" name="id" type="hidden" ></input>   		
 		                       		<div class="form-group">
@@ -159,6 +161,7 @@
 		                       			<input class="form-control" id="telefono" name="telefono" type="text" ></input>
 		                       		</div>
 		                       		<div class="form-group">
+		                       			<label for="sexo">Sexo:</label>
 									    <select name="sexo" id="sexo" class="form-control" required>
 											<option value="">Selecciona Sexo</option>
 											<option value="Masculino">Masculino</option>
@@ -169,12 +172,18 @@
 		                       			<label for="edad">Edad:</label>
 		                       			<input class="form-control" id="edad" name="edad" type="text" ></input>
 		                       		</div>
-			                       		<div class="form-group">
+			                       	<div class="form-group">
+										<label for="edad">Estado:</label>
 	                       				<input class="form-control" id="estado" name="estado" type="text"></input>
 	                       			</div>	
 	                       			<div class="form-group">
-		                       			<label for="rol">Rol:</label>
-		                       			<input class="form-control" id="rol" name="rol" type="text" ></input>
+										<label for="rol">Rol:</label>
+		                       			<select name="rol" id="rol" class="form-control" required>
+									<option value="">Selecciona Rol</option>
+									<option value="1">Administrador</option>
+									<option value="2">Maestro</option>
+									<option value="3">Alumno</option>
+								</select>
 		                       		</div>
 		                       		<div class="form-group">
 		                       			<label for="usuario">Usuario:</label>

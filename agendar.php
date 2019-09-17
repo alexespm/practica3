@@ -54,10 +54,6 @@
 						<td>$fila[7]</td>
 						<td>$fila[8]</td>
 						<td>$fila[9]</td>";
-					// echo"<td>";						
-				 //     echo "<a data-toggle='modal' data-target='#editUsu' data-id='" .$fila[0] ."' data-clave'" .$fila[2] ."' data-nombre='" .$fila[1] ."' data-cupos='" .$fila[4] ."' data-aula='" .$fila[5] ."' data-creditos='" .$fila[3] ."' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span>Editar</a> ";			
-					// echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Eliminar</a>";		
-					// echo "</td>";
 					echo "</tr>";
 				}
 				$resultado->close();

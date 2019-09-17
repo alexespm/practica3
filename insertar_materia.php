@@ -19,7 +19,6 @@ else{
 	$sql = "SELECT * FROM materias";
 	$resulta = mysqli_query($conn,$sql);
 	$numero = mysqli_num_rows($resulta);
-	echo 'Número de total de registros: ' . $numero;
 	if($numero==0)
 	{
 		$numerodeletras=5; 
@@ -57,7 +56,7 @@ else{
 		    <SCRIPT LANGUAGE="javascript"> 
             	alert("Materia Registrada"); 
         	</SCRIPT> 
-        	<META HTTP-EQUIV="Refresh" CONTENT="0; URL=ingresoadm.php">	
+        	<META HTTP-EQUIV="Refresh" CONTENT="0; URL=ingresoadm.php">
 <?php
 		} else {
 		    echo "Error: " . $sql . "<br>" . mysqli_error($conn);

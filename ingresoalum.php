@@ -20,7 +20,7 @@ if(isset($_SESSION['alumno'])): ?>
 	    	$('#contenido').load('Agendar.php');
 		}
 		function cargaMaterias() {
-	    	$('#contenido').load('');
+	    	$('#contenido').load('horario.php');
 		}
 	</script>
 	</head>
@@ -29,7 +29,7 @@ if(isset($_SESSION['alumno'])): ?>
 	<div class="sidebar">
 	  <a href="#home" onclick="cargaHomeAlum()"><i class="fa fa-fw fa-home"></i> Home</a>
 	  <a href="#" onclick="cargaAgenda()"><i class="fa fa-fw fa-user"></i> Agendar</a>
-	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Materias</a>
+	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Horario</a>
 	</div>
 
 	<div class="main" id="contenido">

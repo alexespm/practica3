@@ -15,7 +15,7 @@
 </head>
 <body>	
 	<div class="container">
-		<div class="row">	
+		<div class="row">
 			<table class='table'>
 				<tr>
 					<th>NRC</th>
@@ -34,10 +34,7 @@
 			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 			    exit();
 			}
-<<<<<<< HEAD
-			
-=======
->>>>>>> 702384de83345d8bba56e41cbe37f7ee399d0fa6
+
 			$consulta2 = "SELECT NRC,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id WHERE id_usuario='$id_profesor'";
 			if ($resultado = $mysqli->query($consulta2)) 
 			{
@@ -51,7 +48,7 @@
 						<td>$fila[4]</td>
 						<td>$fila[5]</td>";
 					echo"<td>";						
-				     echo "<a data-toggle='modal' data-target='#editUsu'data-id='" .$fila[0] ."' data-clave'" .$fila[2] ."' data-nombre='" .$fila[1] ."' data-cupos='" .$fila[4] ."' data-aula='" .$fila[5] ."' data-creditos='" .$fila[3] ."' class='btn btn-warning' onclick='onEnviar();'><span class='glyphicon glyphicon-pencil'></span>Ver alumnos</a> ";	
+				     echo "<a data-toggle='modal' data-target='#editUsu'data-id='" .$fila[0] ."' data-clave'" .$fila[2] ."' data-nombre='" .$fila[1] ."' data-cupos='" .$fila[4] ."' data-aula='" .$fila[5] ."' data-creditos='" .$fila[3] ."' class='btn btn-warning' id='raaagh'><span class='glyphicon glyphicon-pencil'></span>Ver alumnos</a> ";	
 					echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Descartar</a>";	
 					echo "</td>";
 					echo "</tr>";
@@ -71,11 +68,9 @@
                         <h4>Alumnos Inscritos</h4>
                     </div>
                     <div id="contenedor"></div>
-                    <?php 
-                    	echo $_POST['codmat'];
-                    ?>
                     <div class="modal-body">
-                    	<input  id="id" name="id" type="" ></input>
+                    	<input  id="id" name="id" type="hidden" ></input>
+              
                     	<table class="table">
                     		<tr>
                     			<th>Codigo</th>
@@ -89,7 +84,9 @@
 			    exit();
 			}
 
-			$sql = "SELECT usuario_ide,nombre FROM usuarioclase INNER JOIN usuarios ON usu_id = usuario_ide where clase_ide ='' ";
+			
+		
+			$sql = "SELECT usuario_ide,nombre FROM usuarioclase INNER JOIN usuarios ON usu_id = usuario_ide WHERE clase_ide = '2'";
 			if ($resultado = $mysqli->query($sql)) 
 			{
 				while ($fila = $resultado->fetch_row()) 
@@ -123,15 +120,6 @@
 		  var recipient0 = button.data('id')
 		  
 
-		$(document).ready(function()
-		{
-			$("#id").click(function(){
-				var txt = $("input").val();
-		        $.post("ver_clases.php", {codmat: reci}, function(htmlexterno){
-		   			$("#contenedor").html(htmlexterno);
-		    	});
-			});
-		});
 		   // Extract info from data-* attributes
 		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -139,17 +127,17 @@
 		  var modal = $(this)		 
 		  modal.find('.modal-body #id').val(recipient0)
 
-		})
-	</script>
-	<script type="text/javascript">
-    var variableJs ="Esta es mi variable en JS";
+		  var id = $('#id').val()
+			$.ajax({
+      			type: 'POST',
+      			url: 'ver_clases.php',
+      			data: {'id': id}
+    		})
+    		s
 
-    function onEnviar(){
-       document.getElementById("variable").value=variableJs;
-    }
-
-	
+		})		        
 	</script>
+
 </body>
 </html>     
 <?php

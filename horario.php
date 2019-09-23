@@ -30,14 +30,13 @@
 				</tr>			
 <?php
 			$id_alumno= $_SESSION['alumno'];
-			echo $id_alumno;
 			$mysqli = new mysqli("localhost", "root", "", "practica4");		
 			if ($mysqli->connect_errno) {
 			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 			    exit();
 			}
 			
-			$consulta2 = "SELECT NRC,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC  INNER JOIN horario ON id_horario = horario_id INNER JOIN usuarioclase on clase_ide = clase_id where usuario_ide = '$id_alumno'";
+			$consulta2 = "SELECT clase_id,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC  INNER JOIN horario ON id_horario = horario_id INNER JOIN usuarioclase on clase_ide = clase_id where usuario_ide = '$id_alumno'";
 			if ($resultado = $mysqli->query($consulta2)) 
 			{
 				while ($fila = $resultado->fetch_row()) 

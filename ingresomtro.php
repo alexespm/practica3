@@ -22,6 +22,9 @@ if(isset($_SESSION['maestro'])): ?>
 		function cargaMaterias() {
 	    	$('#contenido').load('ver_clases.php');
 		}
+		function cargaCalificaciones() {
+	    	$('#contenido').load('calificar.php');
+		}
 	</script>
 	</head>
 	<body>
@@ -30,6 +33,7 @@ if(isset($_SESSION['maestro'])): ?>
 	  <a href="#home" onclick="cargaHomeMtro()"><i class="fa fa-fw fa-home"></i> Home</a>
 	  <a href="#" onclick="cargaUsuarios()"><i class="fa fa-fw fa-user"></i> Impartir Materias</a>
 	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Ver Clases</a>
+	  <a href="#" onclick="cargaCalificaciones()"><i class="fa fa-fw fa-user"></i>Calificar Alumnos</a>
 	</div>
 
 	<div class="main" id="contenido">

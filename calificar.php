@@ -2,7 +2,7 @@
 session_start();
 include "conexion.php";
 ?>
- 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +11,6 @@ include "conexion.php";
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-
-	    </div>
 	    <div>
 	    	<label>Materias del profesor <?php	echo $_SESSION["usuario"];?></label><br>   
 			<select id="materias">
@@ -30,7 +27,7 @@ include "conexion.php";
 	    </div>
 	    <div id="display">
 			<div class="row" id="heading" style="display:none;">
-<br><h5>Resultados de la Base de Datos.</h5><br>           
+<!-- <br><h5>Resultados de la Base de Datos.</h5><br> -->           
 <table class="table" id="alumnos">
   <thead class="thead-dark">
     <tr>
@@ -40,10 +37,6 @@ include "conexion.php";
     </tr>
   </thead>
   <tbody id="cuerpo">
-    <tr>
-      <!-- <td><div class="col-sm-4" id="Codigo"></div></td>
-      <td><div class="col-sm-4" id="Nombre"></div></td> -->
-    </tr>
 
   </tbody>
 </table>   
@@ -51,7 +44,7 @@ include "conexion.php";
 <br>		
 <div class="row" id="no_records">
             
-<div class="col-sm-10">Por favor, seleccione el nombre del empleado para ver los detalles</div></div>
+<div class="col-sm-10">Por favor, seleccione una materia para ver sus Alumnos</div></div>
         </div>	
 	</div>
 	<script src="js/jquery.min.js"></script>

@@ -8,6 +8,7 @@ include "conexion.php";
 <head>
 	<title>Profesor-Alumno</title>
 	<script type="text/javascript" src="js/getData.js"></script>
+	<script type="text/javascript" src="js/insertacalif.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -28,7 +29,8 @@ include "conexion.php";
 	    <div id="display">
 			<div class="row" id="heading" style="display:none;">
 <!-- <br><h5>Resultados de la Base de Datos.</h5><br> -->           
-<table class="table" id="alumnos">
+<form action="subircalificacion.php" method="POST">
+	<table class="table" id="alumnos">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Codigo</th>
@@ -39,7 +41,8 @@ include "conexion.php";
   <tbody id="cuerpo">
 
   </tbody>
-</table>   
+</table> 
+</form> 
 </div>
 <br>		
 <div class="row" id="no_records">

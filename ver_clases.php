@@ -1,3 +1,4 @@
+
 <?php
 	session_start();
 	include "conexion.php"; 
@@ -69,13 +70,21 @@
                     </div>
                     <div id="contenedor"></div>
                     <div class="modal-body">
-                    	<input  id="id" name="id" type="hidden" ></input>
-              
+
+                    		<input  id="id" name="id" ></input>
+                   
+                    	
                     	<table class="table">
-                    		<tr>
+                    	 	<tr>
                     			<th>Codigo</th>
                     			<th>Alumno</th>
                     		</tr>
+                    		<script> var variableJS = id; </script>
+
+<?php
+$PHPvariable = "<script> document.write(variableJS) </script>";
+echo "PHPvariable = ".$PHPvariable;
+?>
                     		<?php
 			$id_profesor = $_SESSION['maestro'];
 			$mysqli = new mysqli("localhost", "root", "", "practica4");		
@@ -83,9 +92,9 @@
 			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 			    exit();
 			}
-
-			
-		
+			//echo $_GET["idmateria"];
+			$PHPvariable = "<script> document.writeln(variableJS) </script>";
+			echo $PHPvariable;
 			$sql = "SELECT usuario_ide,nombre FROM usuarioclase INNER JOIN usuarios ON usu_id = usuario_ide WHERE clase_ide = '2'";
 			if ($resultado = $mysqli->query($sql)) 
 			{
@@ -115,27 +124,29 @@
 	<script src="js/bootstrap.min.js"></script>	
 	<script src="js/validaciones.js"></script>
 	<script>			 
-		  $('#editUsu').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var recipient0 = button.data('id')
+		//   $('#editUsu').on('show.bs.modal', function (event) {
+		//   var button = $(event.relatedTarget) // Button that triggered the modal
+		//   var recipient0 = button.data('id')
 		  
 
-		   // Extract info from data-* attributes
-		  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		//    // Extract info from data-* attributes
+		//   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		//   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		 
-		  var modal = $(this)		 
-		  modal.find('.modal-body #id').val(recipient0)
+		//   var modal = $(this)		 
+		//   modal.find('.modal-body #id').val(recipient0)
 
-		  var id = $('#id').val()
-			$.ajax({
-      			type: 'POST',
-      			url: 'ver_clases.php',
-      			data: {'id': id}
-    		})
-    		s
-
-		})		        
+		//   	var id = $('#id').val()
+		  	
+		// })	
+		$("#editUsu").on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+		   	var recipient0 = button.data('id')
+		   	var modal = $(this)		 
+			modal.find('.modal-body #id').val(recipient0)
+			var id = $('#id').val()	
+			var variableJS = $('#id').val()	
+		});	 	        
 	</script>
 
 </body>
@@ -148,4 +159,5 @@
 		 <META HTTP-EQUIV="Refresh" CONTENT="0; URL=login.php">
 		 <?php
 	}
+
 ?>

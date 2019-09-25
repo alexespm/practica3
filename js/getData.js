@@ -10,6 +10,7 @@ $(document).ready(function(){
 			data: dataString,  
 			cache: false,
 			success: function(employeeData) {
+				$("#ver").val(id);
 				if(employeeData) {
 					var valor=0;
 					$("#heading").show();		  
@@ -29,7 +30,7 @@ $(document).ready(function(){
 					        $('<td>'+v+'</td>').appendTo(tr);
 					    });
 					    $('<td><input type="radio" onChange="habilita(this);" class="evaluar" name="evaluar" id="'+valor+'" value="Calificar"><label>Calificar</label><br><input type="radio" class="evaluar" name="evaluar" id="'+valor+'" value="Reprobado" onChange="deshabilita(this);"><label>Reprobado</label><br><input type="radio" class="evaluar" id="'+valor+'" name="evaluar"value="Cursando" onChange="deshabilita(this);"><label>Cursando...</label></td>').appendTo(tr);
-					    $('<td><input type="text" name="calif"class="califica" id="'+valor+'" style="display:none" placeholder="Ingresa Calficacion"><br><button type="submit" id="'+valor+'" class="btn btn-primary">Guardar</button><td>').appendTo(tr);
+					    $('<td hidden><input type="text" name="calif"class="califica" id="'+valor+'" style="display:none" placeholder="Ingresa Calficacion"><br><button name="enviar" type="submit" id="'+valor+'" class="btn btn-primary">Guardar</button><td>').appendTo(tr);
 					    tr.appendTo('#cuerpo');
 					    identificador = valor;
 					    valor++;		
@@ -46,6 +47,7 @@ $(document).ready(function(){
 			} 
 		});
  	})
+ 	
 });
 
 function habilita(obj)
@@ -59,10 +61,8 @@ function habilita(obj)
 				$("input[type=radio]:checked").each(function(){
 					//cada elemento seleccionado
 					variable = $(this).val();
-
-
+					$("#evaluar").val(variable);					
 				});
-				
 				    
 				for(var i =0; i< inputs.length; i++){
 
@@ -72,6 +72,21 @@ function habilita(obj)
 					if(variable =="Calificar")
 					{
 						inputs[id].style.display = "block";
+						$("#alumnos").find("tr").each(function (idx, row) {
+			          	if (idx > 0) {
+			              	var cbkbox = $("td:eq(2) input:checked", row).val();
+			              	if(cbkbox) {
+			                  	var JsonData = {};
+			                  	JsonData.Id = $("td:eq(0)", row).text();
+			                  	JsonData.Nombre = $("td:eq(1)", row).text();
+			                  	JsonData.Seleccionar = cbkbox;			       
+			                	$("#ide_usuario").val(JsonData.Id);
+			                	$('#editUsu').modal('show');
+			                	$("#calif").css("display", "block");
+			                	$("#evaluar").css("display", "none");
+			              	}
+			          	}
+			        });
 					}
 				}
 			}
@@ -91,10 +106,42 @@ function deshabilita(obj)
 			if($('input:radio[name=evaluar]:checked').val() =="Reprobado")
 			{
 				inputs[id2].style.display = "none";
+				$("#alumnos").find("tr").each(function (idx, row) {
+			          	if (idx > 0) {
+			              	var cbkbox = $("td:eq(2) input:checked", row).val();
+			              	if(cbkbox) {
+			                  	var JsonData = {};
+			                  	JsonData.Id = $("td:eq(0)", row).text();
+			                  	JsonData.Nombre = $("td:eq(1)", row).text();
+			                  	JsonData.Seleccionar = cbkbox;
+			                  	$('#editUsu').modal('show');			       
+			                	$("#ide_usuario").val(JsonData.Id);
+			                	$("#evaluar").val($('input:radio[name=evaluar]:checked').val());
+			                	$("#calif").css("display", "none");
+			                	$("#evaluar").css("display", "block");
+			              	}
+			          	}
+			        });
 			}
 			if($('input:radio[name=evaluar]:checked').val() =="Cursando")
 			{
 				inputs[id2].style.display = "none";
+				$("#alumnos").find("tr").each(function (idx, row) {
+			          	if (idx > 0) {
+			              	var cbkbox = $("td:eq(2) input:checked", row).val();
+			              	if(cbkbox) {
+			                  	var JsonData = {};
+			                  	JsonData.Id = $("td:eq(0)", row).text();
+			                  	JsonData.Nombre = $("td:eq(1)", row).text();
+			                  	JsonData.Seleccionar = cbkbox;	
+			                  	$('#editUsu').modal('show');		       
+			                	$("#ide_usuario").val(JsonData.Id);
+			                	$("#evaluar").val($('input:radio[name=evaluar]:checked').val());
+			                	$("#calif").css("display", "none");
+			                	$("#evaluar").css("display", "block");
+			              	}
+			          	}
+			        });
 			}
 		}
 	//document.getElementById('boton').style.display = "none";

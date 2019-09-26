@@ -22,14 +22,18 @@ if(isset($_SESSION['alumno'])): ?>
 		function cargaMaterias() {
 	    	$('#contenido').load('horario.php');
 		}
+		function cargaKardex() {
+	    	$('#contenido').load('kardex.php');
+		}
 	</script>
 	</head>
 	<body>
 	<!-- The sidebar -->
 	<div class="sidebar">
 	  <a href="#home" onclick="cargaHomeAlum()"><i class="fa fa-fw fa-home"></i> Home</a>
-	  <a href="#" onclick="cargaAgenda()"><i class="fa fa-fw fa-user"></i> Agendar</a>
-	  <a href="#" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Horario</a>
+	  <a href="#Agenda" onclick="cargaAgenda()"><i class="fa fa-fw fa-user"></i> Agendar</a>
+	  <a href="#Horario" onclick="cargaMaterias()"><i class="fa fa-fw fa-user"></i> Horario</a>
+	  <a href="#Kardex" onclick="cargaKardex()"><i class="fa fa-fw fa-user"></i> Kardex</a>
 	</div>
 
 	<div class="main" id="contenido">

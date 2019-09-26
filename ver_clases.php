@@ -12,12 +12,12 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Usuarios</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/estiloslistar.css">		
+	<link rel="stylesheet" href="css/estiloslistar.css">	
 </head>
 <body>	
 	<div class="container">
 		<div class="row">
-			<table class='table'>
+			<table id="clases" class='table'>
 				<tr>
 					<th>NRC</th>
 					<th>Clave</th>
@@ -48,8 +48,9 @@
 						<td>$fila[3]</td>
 						<td>$fila[4]</td>
 						<td>$fila[5]</td>";
-					echo"<td>";						
-				     echo "<a data-toggle='modal' data-target='#editUsu'data-id='" .$fila[0] ."' data-clave'" .$fila[2] ."' data-nombre='" .$fila[1] ."' data-cupos='" .$fila[4] ."' data-aula='" .$fila[5] ."' data-creditos='" .$fila[3] ."' class='btn btn-warning' id='raaagh'><span class='glyphicon glyphicon-pencil'></span>Ver alumnos</a> ";	
+					echo"<td>";
+					 echo"<button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editUsu'>Abrir modal</button>";						
+				     echo "<a href='ver_alumnos.php' data-toggle='modal' name='editUsu 'data-target='#editUsu'data-id='" .$fila[0] ."' class='btn btn-warning' id='raaagh'><span class='glyphicon glyphicon-pencil'></span>Ver alumnos</a> ";	
 					echo "<a class='btn btn-danger' href='elimina.php?id=" .$fila[0] ."'><span class='glyphicon glyphicon-remove'></span>Descartar</a>";	
 					echo "</td>";
 					echo "</tr>";
@@ -60,93 +61,34 @@
 ?>
 	        </table>
 	    </div>
-	    <!-- Modal GENERAR CLASE-->
-        <div class="modal" id="editUsu" tabindex="-1" role="dialog" aria-labellebdy="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4>Alumnos Inscritos</h4>
-                    </div>
-                    <div id="contenedor"></div>
-                    <div class="modal-body">
 
-                    		<input  id="id" name="id" ></input>
-                   
-                    	
-                    	<table class="table">
-                    	 	<tr>
-                    			<th>Codigo</th>
-                    			<th>Alumno</th>
-                    		</tr>
-                    		<script> var variableJS = id; </script>
-
-<?php
-$PHPvariable = "<script> document.write(variableJS) </script>";
-echo "PHPvariable = ".$PHPvariable;
-?>
-                    		<?php
-			$id_profesor = $_SESSION['maestro'];
-			$mysqli = new mysqli("localhost", "root", "", "practica4");		
-			if ($mysqli->connect_errno) {
-			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-			    exit();
-			}
-			//echo $_GET["idmateria"];
-			$PHPvariable = "<script> document.writeln(variableJS) </script>";
-			echo $PHPvariable;
-			$sql = "SELECT usuario_ide,nombre FROM usuarioclase INNER JOIN usuarios ON usu_id = usuario_ide WHERE clase_ide = '2'";
-			if ($resultado = $mysqli->query($sql)) 
-			{
-				while ($fila = $resultado->fetch_row()) 
-				{					
-					echo "<tr>";
-
-					echo "<td>$fila[0]</td>
-						<td>$fila[1]</td>
-						<td></td>
-						</tr>";
-				}
-				$resultado->close();
-			}
-			$mysqli->close();
-?>			
-                    	</table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div> 
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>	
 	<script src="js/validaciones.js"></script>
-	<script>			 
-		//   $('#editUsu').on('show.bs.modal', function (event) {
-		//   var button = $(event.relatedTarget) // Button that triggered the modal
-		//   var recipient0 = button.data('id')
-		  
+	<script>
+		$(document).ready(function(){
+			$('#clases tr').on('click', function(){
+			  	var dato = $(this).find('td:first').html();
+			  	$('#id').val(dato);
+			  	var dataString = 'nrc='+ dato;  
 
-		//    // Extract info from data-* attributes
-		//   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		//   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-		 
-		//   var modal = $(this)		 
-		//   modal.find('.modal-body #id').val(recipient0)
+			  	$.ajax({
+				type: "GET",
+				url: 'ver_alumnos.php',
+				data: dataString,
+				success: function(data) {
+					 $("#editUsu").modal("show");
+				}
+			});
 
-		//   	var id = $('#id').val()
-		  	
-		// })	
-		$("#editUsu").on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-		   	var recipient0 = button.data('id')
-		   	var modal = $(this)		 
-			modal.find('.modal-body #id').val(recipient0)
-			var id = $('#id').val()	
-			var variableJS = $('#id').val()	
-		});	 	        
+			});	
+
+
+		});			 
+			
+		
+		
 	</script>
 
 </body>

@@ -12,6 +12,11 @@
 	<title>Usuarios</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/estiloslistar.css">		
+	<script type="text/javascript">
+		function cargaAgenda() {
+	    	$('#contenido').load('Agendar.php');
+		}
+	</script>
 </head>
 <body>
 	
@@ -22,10 +27,7 @@
 					<th>NRC</th>
 					<th>Clave</th>
 					<th>Nombre de Materia</th>
-					<th>Aula</th>
-					<th>Dias de clase</th>
-					<th>Hora</th>
-					
+					<th>Calificacion</th>
 					<th><span class="glyphicon glyphicon-wrench"></span></th>
 				</tr>			
 <?php
@@ -36,7 +38,7 @@
 			    exit();
 			}
 			
-			$consulta2 = "SELECT clase_id,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC  INNER JOIN horario ON id_horario = horario_id INNER JOIN usuarioclase on clase_ide = clase_id where usuario_ide = '$id_alumno'";
+			$consulta2 = "SELECT clase_id,clave,nombremat,calificacion FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN usuarioclase on clase_ide = clase_id where usuario_ide = '$id_alumno'";
 			if ($resultado = $mysqli->query($consulta2)) 
 			{
 				while ($fila = $resultado->fetch_row()) 
@@ -45,9 +47,7 @@
 					echo "<td>$fila[0]</td>
 						<td>$fila[1]</td>
 						<td>$fila[2]</td>
-						<td>$fila[3]</td>
-						<td>$fila[4]</td>
-						<td>$fila[5]</td>";
+						<td>$fila[3]</td>";
 					
 					echo "</tr>";
 				}
@@ -56,8 +56,7 @@
 			$mysqli->close();				
 ?>
 	        </table>
-		</div> 
-		
+		</div>
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>	

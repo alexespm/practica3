@@ -1,7 +1,8 @@
 var identificador;
 $(document).ready(function(){  
 	// Código para obtener todos los registros de la tabla a través del cuadro de selección
-	$("#materias").change(function() {    
+	$("#materias").change(function() { 
+
 		var id = $(this).find(":selected").val();
 		var dataString = 'empid='+ id;  
 		$.ajax({
@@ -18,7 +19,11 @@ $(document).ready(function(){
 					     
 	
     				$.each(employeeData, function(key, val) {
+    					
 					    var tr=$('<tr></tr>');
+					    $('#cuerpo tr:not(:first-child)').slice(1).remove();
+					    $("#alumnos > tbody").empty();
+					    $('tbody').removeData();
 					    $.each(val, function(k, v){
 					    	$('<input type="hidden" name="mi_variable" id="'+valor+'"value="'+v+'">').appendTo(tr);
 					    	if(v!=0)
@@ -26,19 +31,16 @@ $(document).ready(function(){
 					    });
 					    
 					    $.each(val, function(k, v){
-					    	
 					        $('<td>'+v+'</td>').appendTo(tr);
 					    });
 					    $('<td><input type="radio" onChange="habilita(this);" class="evaluar" name="evaluar" id="'+valor+'" value="Calificar"><label>Calificar</label><br><input type="radio" class="evaluar" name="evaluar" id="'+valor+'" value="Reprobado" onChange="deshabilita(this);"><label>Reprobado</label><br><input type="radio" class="evaluar" id="'+valor+'" name="evaluar"value="Cursando" onChange="deshabilita(this);"><label>Cursando...</label></td>').appendTo(tr);
 					    $('<td hidden><input type="text" name="calif"class="califica" id="'+valor+'" style="display:none" placeholder="Ingresa Calficacion"><br><button name="enviar" type="submit" id="'+valor+'" class="btn btn-primary">Guardar</button><td>').appendTo(tr);
 					    tr.appendTo('#cuerpo');
+
 					    identificador = valor;
 					    valor++;		
 					});
-			   		$("#records").show();					
-					
-			   		
-										 
+			   		$("#records").show();															 
 				} else {
 					$("#heading").hide();
 					$("#records").hide();
@@ -49,7 +51,9 @@ $(document).ready(function(){
  	})
  	
 });
-
+$("#boton").click(function() {
+    $("#cuerpo").empty();
+});
 function habilita(obj)
 {
  	var radios = document.getElementsByClassName('evaluar');

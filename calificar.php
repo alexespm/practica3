@@ -74,7 +74,7 @@ include "conexion.php";
                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                        <button id="boton"type="button" class="btn btn-warning" data-dismiss="modal" onclick='javascript:window.location.reload()'>Cerrar</button>
                     </div>
                 </div>
             </div>

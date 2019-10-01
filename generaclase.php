@@ -12,13 +12,13 @@ if(isset($_SESSION['maestro'])){
 	$dato = mysqli_fetch_assoc($consulta2);
 	$id_horario = $dato["horario_id"];
 	//CONSULTA Y OBTIEN ID DE USUARIO Y HORARIO DE CLASE
-	$consulta3 = mysqli_query($conn, "SELECT * FROM clases where id_horario = '$id_horario' AND id_usuario= '$id_usuario'");
+	$consulta3 = mysqli_query($conn, "SELECT * FROM clases where ide_horario = '$id_horario' AND id_usuario= '$id_usuario'");
 	$dato2 = mysqli_fetch_assoc($consulta3);
-	$idclase =  $dato2["id_horario"];
+	$idclase =  $dato2["ide_horario"];
 	$usuclase = $dato2["id_usuario"];
 	$mateclase = $dato2["id_materia"];
 	//CONSULTA PARA INSERTAR
-	$consulta = "INSERT INTO clases (id_materia,id_usuario,id_horario) VALUES ('$id','$id_usuario','$id_horario')";
+	$consulta = "INSERT INTO clases (id_materia,id_usuario,ide_horario) VALUES ('$id','$id_usuario','$id_horario')";
 	if(!$consulta){ 
     	echo mysqli_error($consulta);
     	exit;

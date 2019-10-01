@@ -21,7 +21,7 @@ include "conexion.php";
 				<option value="" selected="selected">Seleccionar Materia</option>
 				<?php
 				$id_profesor = $_SESSION['maestro'];
-				$sql = "SELECT NRC,clave,nombremat FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id WHERE id_usuario='$id_profesor'";
+				$sql = "SELECT NRC,clave,nombremat FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON ide_horario = horario_id WHERE id_usuario='$id_profesor'";
 				$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
 				while( $rows = mysqli_fetch_assoc($resultset) ) { 
 				?>
@@ -31,10 +31,11 @@ include "conexion.php";
 	    </div>
 	    <div id="display">
 			<div class="row" id="heading" style="display:none;">
+
 <!-- <br><h5>Resultados de la Base de Datos.</h5><br> -->           
 				<form id="mi_formulario" action="subircalificacion.php" method="POST">
 					<table class="table" id="alumnos">
-					  <thead class="thead-dark">
+					  <thead class="thead-dark" id="cabeza">
 					    <tr>
 					      <th scope="col">Codigo</th>
 					      <th scope="col">Nombre</th>

@@ -1,4 +1,3 @@
-
 <?php
 include_once("conexion.php");
 if($_REQUEST['empid']) { 
@@ -13,10 +12,8 @@ if($_REQUEST['empid']) {
         $i++;
             
     }
-
     echo json_encode($data);
 } else {
     echo 0; 
 }
 ?>
-

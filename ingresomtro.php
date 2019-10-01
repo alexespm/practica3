@@ -11,7 +11,8 @@ if(isset($_SESSION['maestro'])): ?>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/acceso.css">
 	<link rel="stylesheet" type="text/css" href="css/estilousuarios.css">
-	<script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- <script type="text/javascript"src="http://code.jquery.com/jquery-latest.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 	<script>
 		function cargaHomeMtro() {
 	    	$('#contenido').load('ingresomtro.php');

@@ -36,7 +36,7 @@
 			    exit();
 			}
 			
-			$consulta2 = "SELECT clase_id,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC  INNER JOIN horario ON id_horario = horario_id INNER JOIN usuarioclase on clase_ide = clase_id where usuario_ide = '$id_alumno'";
+			$consulta2 = "SELECT clase_id,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC  INNER JOIN horario ON ide_horario = horario_id INNER JOIN usuarioclase on clase_ide = clase_id where usuario_ide = '$id_alumno'";
 			if ($resultado = $mysqli->query($consulta2)) 
 			{
 				while ($fila = $resultado->fetch_row()) 

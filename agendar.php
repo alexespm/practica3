@@ -39,7 +39,7 @@
 			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 			    exit();
 			}
-			$consulta = "SELECT clase_id,nombremat,clave,aula,dias,hora,aula,cupos,creditos,nombre FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id INNER JOIN usuarios ON id_usuario = usu_id";
+			$consulta = "SELECT clase_id,nombremat,clave,aula,dias,hora,aula,cupos,creditos,nombre FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON ide_horario = horario_id INNER JOIN usuarios ON id_usuario = usu_id";
 			if ($resultado = $mysqli->query($consulta)) 
 			{
 				while ($fila = $resultado->fetch_row()) 

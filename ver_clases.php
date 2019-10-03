@@ -97,6 +97,7 @@
     $(document).ready(function(){
 			$('#clases tr').on('click', function(){
 			  	var dato = $(this).find('td:first').html();
+			  	$('#cuerpo').empty();
 			  	$('#id').val(dato);   
 		var dataString = 'empid='+ dato;  
 		$.ajax({

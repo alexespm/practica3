@@ -34,7 +34,7 @@
 			    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 			    exit();
 			}
-			$consulta2 = "SELECT NRC,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON id_horario = horario_id WHERE id_usuario='$id_profesor'";
+			$consulta2 = "SELECT NRC,clave,nombremat,aula,dias,hora FROM clases INNER JOIN materias ON id_materia = NRC INNER JOIN horario ON ide_horario = horario_id WHERE id_usuario='$id_profesor'";
 			if ($resultado = $mysqli->query($consulta2)) 
 			{
 				while ($fila = $resultado->fetch_row()) 
@@ -108,6 +108,7 @@
 				$("#id").val(id);
 				if(employeeData) {
 					var valor=0;
+					$('#cuerpo').empty();
 					$("#heading").show();		  
 					$("#no_records").hide();
 					     
@@ -133,6 +134,7 @@
 			   		
 										 
 				} else {
+					$('#cuerpo').empty();
 					$("#heading").hide();
 					$("#records").hide();
 					$("#no_records").show();
